@@ -1,3 +1,8 @@
+/* eslint-env browser */
+// Add line above to get rid of false positive eslint warning for
+// undefined AbortController
+// See also https://github.com/eslint/eslint/issues/15663
+
 import { Card, ListItem } from "@rneui/themed";
 import axios from "axios";
 import { useEffect, useState } from "react";
