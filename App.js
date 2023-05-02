@@ -4,6 +4,9 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Details } from "./screens/Details";
 import { Overview } from "./screens/Overview";
 import { Menu } from "./screens/Menu";
+import { Roles } from "./screens/Roles";
+import { Organization } from "./screens/Organization";
+
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -21,10 +24,9 @@ export default function App() {
           component={Details}
           options={({ route }) => ({ title: route.params.name })}
         />
-        <Stack.Screen
-          name="Menu"
-          component={Menu}
-        />
+        <Stack.Screen name="Menu" component={Menu} />
+        <Stack.Screen name="Roles" component={Roles} />
+        <Stack.Screen name="Organization" component={Organization} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -4,29 +4,29 @@ import { StatusBar } from "expo-status-bar";
 export const Menu = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Image
-        styles={styles.logo}
-        source={require("../assets/logo.png")}
-      />
+      <Image style={styles.logo} source={require("../assets/logo.png")} />
       <Button
+        style={styles.button}
         title="Members of parliament"
         onPress={() => navigation.navigate("Overview")}
       />
-      <StatusBar style="auto"/>
+      <Button
+        style={styles.button}
+        title="Roles"
+        onPress={() => navigation.navigate("Roles")}
+      />
+      <StatusBar style="auto" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    
-    flex: 1
+    flex: 1,
+    padding: 5,
   },
   logo: {
-    // not resizing the image
-    width: null,
-    height: null,
-    resizeMode: 'contain',
-    objectFit: 'scale-down'
-  },
-})
+    width: "100%",
+    resizeMode: "contain",
+  }
+});
