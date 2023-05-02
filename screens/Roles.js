@@ -1,13 +1,18 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, FlatList, Alert } from "react-native";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { ListItem, Avatar, SearchBar } from "@rneui/themed";
 
-export const Roles = () => {
+import mock from "../mock/organizations.json";
+
+export const Roles = ({ navigation }) => {
   const [search, setSearch] = useState("");
   const [data, setData] = useState([]);
   const [filteredData, setFilteredData] = useState(data);
 
   useEffect(() => {
     axios
-      .get("https://api.lagtinget.ax/api/organizations.json")
+      .get("https://api.lagtinget.ax/api/roles.json")
       .then((response) => {
         setData(response.data);
         setFilteredData(response.data);
@@ -24,9 +29,8 @@ export const Roles = () => {
       setFilteredData(data);
     } else {
       setFilteredData(
-        data.filter(
-          (organization) =>
-            organization.title.toLowerCase().match(newSearch.toLowerCase())
+        data.filter((organization) =>
+          organization.title.toLowerCase().match(newSearch.toLowerCase())
         )
       );
     }
@@ -36,18 +40,18 @@ export const Roles = () => {
     <ListItem
       bottomDivider
       onPress={() =>
-        navigation.navigate("Role", { name: item.name, id: item.id })
+        navigation.navigate("People", { title: item.title, id: item.id })
       }
     >
       <Avatar
         rounded
         size="large"
-        // source={item.image && { uri: item.image.url }}
-        title={item.first_name.charAt(0) + item.last_name.charAt(0)}
+        source={item.image && { uri: item.image.url }}
+        title={item.title}
         overlayContainerStyle={styles.avatar}
       />
       <ListItem.Content>
-        <ListItem.Title>{item.name}</ListItem.Title>
+        <ListItem.Title>{item.title}</ListItem.Title>
       </ListItem.Content>
       <ListItem.Chevron />
     </ListItem>
@@ -56,7 +60,18 @@ export const Roles = () => {
 
   return (
     <View style={styles.container}>
-      <Text>Roles</Text>
+      <SearchBar
+        placeholder="Search by name"
+        lightTheme="true"
+        inputContainerStyle={styles.searchBar}
+        onChangeText={updateSearch}
+        value={search}
+      />
+      <FlatList
+        data={filteredData}
+        renderItem={renderItem}
+        keyExtractor={(item) => item.id}
+      />
     </View>
   );
 };

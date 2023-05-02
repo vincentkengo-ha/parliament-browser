@@ -1,9 +1,11 @@
 import {View, Text, StyleSheet} from "react-native";
 
-export const Role = () => {
+export const People = ({ route }) => {
+
+    // finish this
     return (
         <View style={styles.container}>
-            <Text>Role for person</Text>
+            <Text>Persons with role</Text>
         </View>
     );
 };

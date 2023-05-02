@@ -5,7 +5,7 @@ import { Details } from "./screens/Details";
 import { Overview } from "./screens/Overview";
 import { Menu } from "./screens/Menu";
 import { Roles } from "./screens/Roles";
-import { Organization } from "./screens/Organization";
+import { People } from "./screens/People";
 
 
 export default function App() {
@@ -26,7 +26,7 @@ export default function App() {
         />
         <Stack.Screen name="Menu" component={Menu} />
         <Stack.Screen name="Roles" component={Roles} />
-        <Stack.Screen name="Organization" component={Organization} />
+        <Stack.Screen name="People" component={People} />
       </Stack.Navigator>
     </NavigationContainer>
   );
